@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.entertainment.dao.StaffDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.entertainment.model.StaffDetails" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="staff_id" property="staffId" jdbcType="INTEGER" />
+    <result column="staff_nb" property="staffNb" jdbcType="INTEGER" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="height" property="height" jdbcType="INTEGER" />
+    <result column="weight" property="weight" jdbcType="INTEGER" />
+    <result column="bust" property="bust" jdbcType="INTEGER" />
+    <result column="waist" property="waist" jdbcType="INTEGER" />
+    <result column="hipline" property="hipline" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="administrators_id" property="administratorsId" jdbcType="INTEGER" />
+    <result column="examine" property="examine" jdbcType="BIT" />
+    <result column="exhibition" property="exhibition" jdbcType="BIT" />
+    <result column="uploadTime" property="uploadtime" jdbcType="DATE" />
+    <result column="dueTime" property="duetime" jdbcType="DATE" />
+    <result column="plateType_id" property="platetypeId" jdbcType="INTEGER" />
+    <result column="clickVolume" property="clickvolume" jdbcType="INTEGER" />
+    <result column="recommend" property="recommend" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.entertainment.model.StaffDetails" extends="BaseResultMap" >
+    <result column="introduce" property="introduce" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, staff_id, staff_nb, birthday, height, weight, bust, waist, hipline, shop_id, 
+    administrators_id, examine, exhibition, uploadTime, dueTime, plateType_id, clickVolume, 
+    recommend
+  </sql>
+  <sql id="Blob_Column_List" >
+    introduce
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from staff_details
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="queryAll" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from staff_details
+    <where>
+      <if test="staffId != null" >
+       and staff_id = #{staffId,jdbcType=INTEGER}
+      </if>
+      <if test="staffNb != null" >
+       and staff_nb = #{staffNb,jdbcType=INTEGER}
+      </if>
+      <if test="birthday != null" >
+       and birthday = #{birthday,jdbcType=DATE}
+      </if>
+      <if test="height != null" >
+       and height = #{height,jdbcType=INTEGER}
+      </if>
+      <if test="weight != null" >
+       and weight = #{weight,jdbcType=INTEGER}
+      </if>
+      <if test="bust != null" >
+       and bust = #{bust,jdbcType=INTEGER}
+      </if>
+      <if test="waist != null" >
+       and waist = #{waist,jdbcType=INTEGER}
+      </if>
+      <if test="hipline != null" >
+       and hipline = #{hipline,jdbcType=INTEGER}
+      </if>
+      <if test="shopId != null" >
+       and shop_id = #{shopId,jdbcType=INTEGER}
+      </if>
+      <if test="administratorsId != null" >
+       and administrators_id = #{administratorsId,jdbcType=INTEGER}
+      </if>
+      <if test="examine != null" >
+       and examine = #{examine,jdbcType=BIT}
+      </if>
+      <if test="exhibition != null" >
+       and exhibition = #{exhibition,jdbcType=BIT}
+      </if>
+      <if test="uploadtime != null" >
+       and uploadTime = #{uploadtime,jdbcType=DATE}
+      </if>
+      <if test="duetime != null" >
+       and dueTime = #{duetime,jdbcType=DATE}
+      </if>
+      <if test="platetypeId != null" >
+       and plateType_id = #{platetypeId,jdbcType=INTEGER}
+      </if>
+      <if test="clickvolume != null" >
+       and clickVolume = #{clickvolume,jdbcType=INTEGER}
+      </if>
+      <if test="recommend != null" >
+       and recommend = #{recommend,jdbcType=BIT}
+      </if>
+      <if test="introduce != null" >
+       and introduce = #{introduce,jdbcType=LONGVARCHAR}
+      </if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from staff_details
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entertainment.model.StaffDetails" >
+    insert into staff_details (id, staff_id, staff_nb, 
+      birthday, height, weight, 
+      bust, waist, hipline, 
+      shop_id, administrators_id, examine, 
+      exhibition, uploadTime, dueTime, 
+      plateType_id, clickVolume, recommend, 
+      introduce)
+    values (#{id,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, #{staffNb,jdbcType=INTEGER}, 
+      #{birthday,jdbcType=DATE}, #{height,jdbcType=INTEGER}, #{weight,jdbcType=INTEGER}, 
+      #{bust,jdbcType=INTEGER}, #{waist,jdbcType=INTEGER}, #{hipline,jdbcType=INTEGER}, 
+      #{shopId,jdbcType=INTEGER}, #{administratorsId,jdbcType=INTEGER}, #{examine,jdbcType=BIT}, 
+      #{exhibition,jdbcType=BIT}, #{uploadtime,jdbcType=DATE}, #{duetime,jdbcType=DATE}, 
+      #{platetypeId,jdbcType=INTEGER}, #{clickvolume,jdbcType=INTEGER}, #{recommend,jdbcType=BIT}, 
+      #{introduce,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entertainment.model.StaffDetails" >
+    insert into staff_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="staffId != null" >
+        staff_id,
+      </if>
+      <if test="staffNb != null" >
+        staff_nb,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="height != null" >
+        height,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="bust != null" >
+        bust,
+      </if>
+      <if test="waist != null" >
+        waist,
+      </if>
+      <if test="hipline != null" >
+        hipline,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="administratorsId != null" >
+        administrators_id,
+      </if>
+      <if test="examine != null" >
+        examine,
+      </if>
+      <if test="exhibition != null" >
+        exhibition,
+      </if>
+      <if test="uploadtime != null" >
+        uploadTime,
+      </if>
+      <if test="duetime != null" >
+        dueTime,
+      </if>
+      <if test="platetypeId != null" >
+        plateType_id,
+      </if>
+      <if test="clickvolume != null" >
+        clickVolume,
+      </if>
+      <if test="recommend != null" >
+        recommend,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="staffNb != null" >
+        #{staffNb,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="bust != null" >
+        #{bust,jdbcType=INTEGER},
+      </if>
+      <if test="waist != null" >
+        #{waist,jdbcType=INTEGER},
+      </if>
+      <if test="hipline != null" >
+        #{hipline,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="administratorsId != null" >
+        #{administratorsId,jdbcType=INTEGER},
+      </if>
+      <if test="examine != null" >
+        #{examine,jdbcType=BIT},
+      </if>
+      <if test="exhibition != null" >
+        #{exhibition,jdbcType=BIT},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=DATE},
+      </if>
+      <if test="duetime != null" >
+        #{duetime,jdbcType=DATE},
+      </if>
+      <if test="platetypeId != null" >
+        #{platetypeId,jdbcType=INTEGER},
+      </if>
+      <if test="clickvolume != null" >
+        #{clickvolume,jdbcType=INTEGER},
+      </if>
+      <if test="recommend != null" >
+        #{recommend,jdbcType=BIT},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entertainment.model.StaffDetails" >
+    update staff_details
+    <set >
+      <if test="staffId != null" >
+        staff_id = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="staffNb != null" >
+        staff_nb = #{staffNb,jdbcType=INTEGER},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="bust != null" >
+        bust = #{bust,jdbcType=INTEGER},
+      </if>
+      <if test="waist != null" >
+        waist = #{waist,jdbcType=INTEGER},
+      </if>
+      <if test="hipline != null" >
+        hipline = #{hipline,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="administratorsId != null" >
+        administrators_id = #{administratorsId,jdbcType=INTEGER},
+      </if>
+      <if test="examine != null" >
+        examine = #{examine,jdbcType=BIT},
+      </if>
+      <if test="exhibition != null" >
+        exhibition = #{exhibition,jdbcType=BIT},
+      </if>
+      <if test="uploadtime != null" >
+        uploadTime = #{uploadtime,jdbcType=DATE},
+      </if>
+      <if test="duetime != null" >
+        dueTime = #{duetime,jdbcType=DATE},
+      </if>
+      <if test="platetypeId != null" >
+        plateType_id = #{platetypeId,jdbcType=INTEGER},
+      </if>
+      <if test="clickvolume != null" >
+        clickVolume = #{clickvolume,jdbcType=INTEGER},
+      </if>
+      <if test="recommend != null" >
+        recommend = #{recommend,jdbcType=BIT},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.entertainment.model.StaffDetails" >
+    update staff_details
+    set staff_id = #{staffId,jdbcType=INTEGER},
+      staff_nb = #{staffNb,jdbcType=INTEGER},
+      birthday = #{birthday,jdbcType=DATE},
+      height = #{height,jdbcType=INTEGER},
+      weight = #{weight,jdbcType=INTEGER},
+      bust = #{bust,jdbcType=INTEGER},
+      waist = #{waist,jdbcType=INTEGER},
+      hipline = #{hipline,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      administrators_id = #{administratorsId,jdbcType=INTEGER},
+      examine = #{examine,jdbcType=BIT},
+      exhibition = #{exhibition,jdbcType=BIT},
+      uploadTime = #{uploadtime,jdbcType=DATE},
+      dueTime = #{duetime,jdbcType=DATE},
+      plateType_id = #{platetypeId,jdbcType=INTEGER},
+      clickVolume = #{clickvolume,jdbcType=INTEGER},
+      recommend = #{recommend,jdbcType=BIT},
+      introduce = #{introduce,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entertainment.model.StaffDetails" >
+    update staff_details
+    set staff_id = #{staffId,jdbcType=INTEGER},
+      staff_nb = #{staffNb,jdbcType=INTEGER},
+      birthday = #{birthday,jdbcType=DATE},
+      height = #{height,jdbcType=INTEGER},
+      weight = #{weight,jdbcType=INTEGER},
+      bust = #{bust,jdbcType=INTEGER},
+      waist = #{waist,jdbcType=INTEGER},
+      hipline = #{hipline,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      administrators_id = #{administratorsId,jdbcType=INTEGER},
+      examine = #{examine,jdbcType=BIT},
+      exhibition = #{exhibition,jdbcType=BIT},
+      uploadTime = #{uploadtime,jdbcType=DATE},
+      dueTime = #{duetime,jdbcType=DATE},
+      plateType_id = #{platetypeId,jdbcType=INTEGER},
+      clickVolume = #{clickvolume,jdbcType=INTEGER},
+      recommend = #{recommend,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.entertainment.dao.RechargeMapper" >
+  <resultMap id="BaseResultMap" type="com.entertainment.model.Recharge" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="staff_id" property="staffId" jdbcType="INTEGER" />
+    <result column="administrators_id" property="administratorsId" jdbcType="INTEGER" />
+    <result column="recharge" property="recharge" jdbcType="REAL" />
+    <result column="recharge_time" property="rechargeTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, shop_id, staff_id, administrators_id, recharge, recharge_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from recharge
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="queryAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from recharge
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from recharge
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entertainment.model.Recharge" >
+    insert into recharge (id, shop_id, staff_id, 
+      administrators_id, recharge, recharge_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, 
+      #{administratorsId,jdbcType=INTEGER}, #{recharge,jdbcType=REAL}, #{rechargeTime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.entertainment.model.Recharge" >
+    insert into recharge
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="staffId != null" >
+        staff_id,
+      </if>
+      <if test="administratorsId != null" >
+        administrators_id,
+      </if>
+      <if test="recharge != null" >
+        recharge,
+      </if>
+      <if test="rechargeTime != null" >
+        recharge_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="administratorsId != null" >
+        #{administratorsId,jdbcType=INTEGER},
+      </if>
+      <if test="recharge != null" >
+        #{recharge,jdbcType=REAL},
+      </if>
+      <if test="rechargeTime != null" >
+        #{rechargeTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entertainment.model.Recharge" >
+    update recharge
+    <set >
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        staff_id = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="administratorsId != null" >
+        administrators_id = #{administratorsId,jdbcType=INTEGER},
+      </if>
+      <if test="recharge != null" >
+        recharge = #{recharge,jdbcType=REAL},
+      </if>
+      <if test="rechargeTime != null" >
+        recharge_time = #{rechargeTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entertainment.model.Recharge" >
+    update recharge
+    set shop_id = #{shopId,jdbcType=INTEGER},
+      staff_id = #{staffId,jdbcType=INTEGER},
+      administrators_id = #{administratorsId,jdbcType=INTEGER},
+      recharge = #{recharge,jdbcType=REAL},
+      recharge_time = #{rechargeTime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

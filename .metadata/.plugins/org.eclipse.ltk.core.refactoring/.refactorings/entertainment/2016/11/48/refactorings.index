@@ -1,0 +1,5 @@
+1479742288445	Rename package 'com.entertainment.modle'
+1479744172160	Move 'generatorConfig.xml' to 'resources'
+1479985487047	Rename type 'shop'
+1479985866024	Delete element
+1480045395987	Move 'IShopService.java' to 'service'

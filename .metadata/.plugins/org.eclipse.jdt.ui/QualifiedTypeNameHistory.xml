@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.awt.List"/>
+<fullyQualifiedTypeName name="com.entertainment.dao.ShopMapper"/>
+<fullyQualifiedTypeName name="com.entertainment.model.Platetype"/>
+<fullyQualifiedTypeName name="com.entertainment.model.Recharge"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.entertainment.model.Shop"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="com.entertainment.model.Staff"/>
+<fullyQualifiedTypeName name="com.entertainment.service.serviceImpl.ShopServiceImpl"/>
+<fullyQualifiedTypeName name="com.entertainment.dao.ShopDetailsMapper"/>
+<fullyQualifiedTypeName name="com.entertainment.dao.StaffMapper"/>
+<fullyQualifiedTypeName name="com.entertainment.dao.ShopPicMapper"/>
+<fullyQualifiedTypeName name="com.entertainment.dao.StaffDetailsMapper"/>
+<fullyQualifiedTypeName name="com.entertainment.dao.StaffPicMapper"/>
+<fullyQualifiedTypeName name="com.entertainment.dao.AdministratorstMapper"/>
+<fullyQualifiedTypeName name="com.entertainment.dao.PlatetypeMapper"/>
+<fullyQualifiedTypeName name="com.entertainment.dao.RechargeMapper"/>
+<fullyQualifiedTypeName name="com.entertainment.service.serviceImpl.ShopDetailsServiceImpl"/>
+<fullyQualifiedTypeName name="com.entertainment.model.ShopDetails"/>
+<fullyQualifiedTypeName name="com.entertainment.service.serviceImpl.StaffServiceImpl"/>
+<fullyQualifiedTypeName name="com.entertainment.service.serviceImpl.StaffDetailsService"/>
+<fullyQualifiedTypeName name="com.entertainment.model.StaffDetails"/>
+<fullyQualifiedTypeName name="com.entertainment.service.serviceImpl.AdministratorstServiceImpl"/>
+<fullyQualifiedTypeName name="com.entertainment.model.Administratorst"/>
+<fullyQualifiedTypeName name="javax.annotation.Resource"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+<fullyQualifiedTypeName name="com.entertainment.service.IShopDetailsService"/>
+<fullyQualifiedTypeName name="com.entertainment.service.IShopService"/>
+<fullyQualifiedTypeName name="com.entertainment.service.IStaffService"/>
+<fullyQualifiedTypeName name="com.entertainment.service.IStaffDetailsService"/>
+<fullyQualifiedTypeName name="com.entertainment.service.IStaffPicService"/>
+<fullyQualifiedTypeName name="com.entertainment.service.IShopPicService"/>
+<fullyQualifiedTypeName name="com.entertainment.model.ShopPic"/>
+<fullyQualifiedTypeName name="com.entertainment.model.StaffPic"/>
+</qualifiedTypeNameHistroy>

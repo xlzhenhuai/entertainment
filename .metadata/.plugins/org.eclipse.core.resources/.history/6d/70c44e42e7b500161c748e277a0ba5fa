@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.entertainment.dao.AdministratorstMapper" >
+  <resultMap id="BaseResultMap" type="com.entertainment.model.Administratorst" >
+    <id column="administrators_id" property="administratorsId" jdbcType="INTEGER" />
+    <result column="account_number" property="accountNumber" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="weixin" property="weixin" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="qrCode" property="qrcode" jdbcType="VARCHAR" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="examine" property="examine" jdbcType="BIT" />
+    <result column="gold" property="gold" jdbcType="INTEGER" />
+    <result column="jurisdiction" property="jurisdiction" jdbcType="INTEGER" />
+    <result column="recharge_time" property="rechargeTime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    administrators_id, account_number, password, phone, weixin, qq, qrCode, shop_id, 
+    examine, gold, jurisdiction, recharge_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from administrators
+    where administrators_id = #{administratorsId,jdbcType=INTEGER}
+  </select>
+  <select id="queryAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from administrators
+    <where>
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="accountNumber != null" >
+        account_number = #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+       and password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+       and phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null" >
+       and weixin = #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+       and qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcode != null" >
+       and qrCode = #{qrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+       and shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="examine != null" >
+       and examine = #{examine,jdbcType=BIT},
+      </if>
+      <if test="gold != null" >
+       and gold = #{gold,jdbcType=INTEGER},
+      </if>
+      <if test="jurisdiction != null" >
+       and jurisdiction = #{jurisdiction,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeTime != null" >
+       and recharge_time = #{rechargeTime,jdbcType=DATE},
+      </if>
+      </trim>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from administrators
+    where administrators_id = #{administratorsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entertainment.model.Administratorst" >
+    insert into administrators (administrators_id, account_number, 
+      password, phone, weixin, 
+      qq, qrCode, shop_id, 
+      examine, gold, jurisdiction, 
+      recharge_time)
+    values (#{administratorsId,jdbcType=INTEGER}, #{accountNumber,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{weixin,jdbcType=VARCHAR}, 
+      #{qq,jdbcType=VARCHAR}, #{qrcode,jdbcType=VARCHAR}, #{shopId,jdbcType=INTEGER}, 
+      #{examine,jdbcType=BIT}, #{gold,jdbcType=INTEGER}, #{jurisdiction,jdbcType=INTEGER}, 
+      #{rechargeTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entertainment.model.Administratorst" >
+    insert into administrators
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="administratorsId != null" >
+        administrators_id,
+      </if>
+      <if test="accountNumber != null" >
+        account_number,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="weixin != null" >
+        weixin,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="qrcode != null" >
+        qrCode,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="examine != null" >
+        examine,
+      </if>
+      <if test="gold != null" >
+        gold,
+      </if>
+      <if test="jurisdiction != null" >
+        jurisdiction,
+      </if>
+      <if test="rechargeTime != null" >
+        recharge_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="administratorsId != null" >
+        #{administratorsId,jdbcType=INTEGER},
+      </if>
+      <if test="accountNumber != null" >
+        #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null" >
+        #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcode != null" >
+        #{qrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="examine != null" >
+        #{examine,jdbcType=BIT},
+      </if>
+      <if test="gold != null" >
+        #{gold,jdbcType=INTEGER},
+      </if>
+      <if test="jurisdiction != null" >
+        #{jurisdiction,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeTime != null" >
+        #{rechargeTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entertainment.model.Administratorst" >
+    update administrators
+    <set >
+      <if test="accountNumber != null" >
+        account_number = #{accountNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="weixin != null" >
+        weixin = #{weixin,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcode != null" >
+        qrCode = #{qrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="examine != null" >
+        examine = #{examine,jdbcType=BIT},
+      </if>
+      <if test="gold != null" >
+        gold = #{gold,jdbcType=INTEGER},
+      </if>
+      <if test="jurisdiction != null" >
+        jurisdiction = #{jurisdiction,jdbcType=INTEGER},
+      </if>
+      <if test="rechargeTime != null" >
+        recharge_time = #{rechargeTime,jdbcType=DATE},
+      </if>
+    </set>
+    where administrators_id = #{administratorsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entertainment.model.Administratorst" >
+    update administrators
+    set account_number = #{accountNumber,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      weixin = #{weixin,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      qrCode = #{qrcode,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      examine = #{examine,jdbcType=BIT},
+      gold = #{gold,jdbcType=INTEGER},
+      jurisdiction = #{jurisdiction,jdbcType=INTEGER},
+      recharge_time = #{rechargeTime,jdbcType=DATE}
+    where administrators_id = #{administratorsId,jdbcType=INTEGER}
+  </update>
+</mapper>

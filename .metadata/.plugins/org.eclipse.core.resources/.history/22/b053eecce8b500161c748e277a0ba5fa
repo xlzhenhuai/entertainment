@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.entertainment.dao.ShopDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.entertainment.model.ShopDetails" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="contacts" property="contacts" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="weChat" property="wechat" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="business_rise" property="businessRise" jdbcType="VARCHAR" />
+    <result column="business_stop" property="businessStop" jdbcType="VARCHAR" />
+    <result column="consumption" property="consumption" jdbcType="VARCHAR" />
+    <result column="qrCode" property="qrcode" jdbcType="VARCHAR" />
+    <result column="examine" property="examine" jdbcType="BIT" />
+    <result column="exhibition" property="exhibition" jdbcType="BIT" />
+    <result column="uploadTime" property="uploadtime" jdbcType="DATE" />
+    <result column="dueTime" property="duetime" jdbcType="DATE" />
+    <result column="clickVolume" property="clickvolume" jdbcType="INTEGER" />
+    <result column="recommend" property="recommend" jdbcType="BIT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.entertainment.model.ShopDetails" extends="BaseResultMap" >
+    <result column="introduce" property="introduce" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, shop_id, contacts, phone, qq, weChat, address, business_rise, business_stop, 
+    consumption, qrCode, examine, exhibition, uploadTime, dueTime, clickVolume, recommend
+  </sql>
+  <sql id="Blob_Column_List" >
+    introduce
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from shop_details
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="queryAll" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from shop_details
+    <where>
+    <trim prefix="WHERE" prefixOverrides="AND |OR ">
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="contacts != null" >
+        contacts = #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        weChat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="businessRise != null" >
+        business_rise = #{businessRise,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStop != null" >
+        business_stop = #{businessStop,jdbcType=VARCHAR},
+      </if>
+      <if test="consumption != null" >
+        consumption = #{consumption,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcode != null" >
+        qrCode = #{qrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="examine != null" >
+        examine = #{examine,jdbcType=BIT},
+      </if>
+      <if test="exhibition != null" >
+        exhibition = #{exhibition,jdbcType=BIT},
+      </if>
+      <if test="uploadtime != null" >
+        uploadTime = #{uploadtime,jdbcType=DATE},
+      </if>
+      <if test="duetime != null" >
+        dueTime = #{duetime,jdbcType=DATE},
+      </if>
+      <if test="clickvolume != null" >
+        clickVolume = #{clickvolume,jdbcType=INTEGER},
+      </if>
+      <if test="recommend != null" >
+        recommend = #{recommend,jdbcType=BIT},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>  
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from shop_details
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entertainment.model.ShopDetails" >
+    insert into shop_details (id, shop_id, contacts, 
+      phone, qq, weChat, 
+      address, business_rise, business_stop, 
+      consumption, qrCode, examine, 
+      exhibition, uploadTime, dueTime, 
+      clickVolume, recommend, introduce
+      )
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{contacts,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{wechat,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{businessRise,jdbcType=VARCHAR}, #{businessStop,jdbcType=VARCHAR}, 
+      #{consumption,jdbcType=VARCHAR}, #{qrcode,jdbcType=VARCHAR}, #{examine,jdbcType=BIT}, 
+      #{exhibition,jdbcType=BIT}, #{uploadtime,jdbcType=DATE}, #{duetime,jdbcType=DATE}, 
+      #{clickvolume,jdbcType=INTEGER}, #{recommend,jdbcType=BIT}, #{introduce,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.entertainment.model.ShopDetails" >
+    insert into shop_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="contacts != null" >
+        contacts,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="wechat != null" >
+        weChat,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="businessRise != null" >
+        business_rise,
+      </if>
+      <if test="businessStop != null" >
+        business_stop,
+      </if>
+      <if test="consumption != null" >
+        consumption,
+      </if>
+      <if test="qrcode != null" >
+        qrCode,
+      </if>
+      <if test="examine != null" >
+        examine,
+      </if>
+      <if test="exhibition != null" >
+        exhibition,
+      </if>
+      <if test="uploadtime != null" >
+        uploadTime,
+      </if>
+      <if test="duetime != null" >
+        dueTime,
+      </if>
+      <if test="clickvolume != null" >
+        clickVolume,
+      </if>
+      <if test="recommend != null" >
+        recommend,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="contacts != null" >
+        #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="businessRise != null" >
+        #{businessRise,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStop != null" >
+        #{businessStop,jdbcType=VARCHAR},
+      </if>
+      <if test="consumption != null" >
+        #{consumption,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcode != null" >
+        #{qrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="examine != null" >
+        #{examine,jdbcType=BIT},
+      </if>
+      <if test="exhibition != null" >
+        #{exhibition,jdbcType=BIT},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=DATE},
+      </if>
+      <if test="duetime != null" >
+        #{duetime,jdbcType=DATE},
+      </if>
+      <if test="clickvolume != null" >
+        #{clickvolume,jdbcType=INTEGER},
+      </if>
+      <if test="recommend != null" >
+        #{recommend,jdbcType=BIT},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entertainment.model.ShopDetails" >
+    update shop_details
+    <set >
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="contacts != null" >
+        contacts = #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="wechat != null" >
+        weChat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="businessRise != null" >
+        business_rise = #{businessRise,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStop != null" >
+        business_stop = #{businessStop,jdbcType=VARCHAR},
+      </if>
+      <if test="consumption != null" >
+        consumption = #{consumption,jdbcType=VARCHAR},
+      </if>
+      <if test="qrcode != null" >
+        qrCode = #{qrcode,jdbcType=VARCHAR},
+      </if>
+      <if test="examine != null" >
+        examine = #{examine,jdbcType=BIT},
+      </if>
+      <if test="exhibition != null" >
+        exhibition = #{exhibition,jdbcType=BIT},
+      </if>
+      <if test="uploadtime != null" >
+        uploadTime = #{uploadtime,jdbcType=DATE},
+      </if>
+      <if test="duetime != null" >
+        dueTime = #{duetime,jdbcType=DATE},
+      </if>
+      <if test="clickvolume != null" >
+        clickVolume = #{clickvolume,jdbcType=INTEGER},
+      </if>
+      <if test="recommend != null" >
+        recommend = #{recommend,jdbcType=BIT},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.entertainment.model.ShopDetails" >
+    update shop_details
+    set shop_id = #{shopId,jdbcType=INTEGER},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      weChat = #{wechat,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      business_rise = #{businessRise,jdbcType=VARCHAR},
+      business_stop = #{businessStop,jdbcType=VARCHAR},
+      consumption = #{consumption,jdbcType=VARCHAR},
+      qrCode = #{qrcode,jdbcType=VARCHAR},
+      examine = #{examine,jdbcType=BIT},
+      exhibition = #{exhibition,jdbcType=BIT},
+      uploadTime = #{uploadtime,jdbcType=DATE},
+      dueTime = #{duetime,jdbcType=DATE},
+      clickVolume = #{clickvolume,jdbcType=INTEGER},
+      recommend = #{recommend,jdbcType=BIT},
+      introduce = #{introduce,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entertainment.model.ShopDetails" >
+    update shop_details
+    set shop_id = #{shopId,jdbcType=INTEGER},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      weChat = #{wechat,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      business_rise = #{businessRise,jdbcType=VARCHAR},
+      business_stop = #{businessStop,jdbcType=VARCHAR},
+      consumption = #{consumption,jdbcType=VARCHAR},
+      qrCode = #{qrcode,jdbcType=VARCHAR},
+      examine = #{examine,jdbcType=BIT},
+      exhibition = #{exhibition,jdbcType=BIT},
+      uploadTime = #{uploadtime,jdbcType=DATE},
+      dueTime = #{duetime,jdbcType=DATE},
+      clickVolume = #{clickvolume,jdbcType=INTEGER},
+      recommend = #{recommend,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.entertainment.dao.ShopPicMapper" >
+  <resultMap id="BaseResultMap" type="com.entertainment.model.ShopPic" >
+    <id column="pic_id" property="picId" jdbcType="INTEGER" />
+    <result column="pic_add" property="picAdd" jdbcType="VARCHAR" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="examine" property="examine" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pic_id, pic_add, shop_id, examine
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop_pic
+    where pic_id = #{picId,jdbcType=INTEGER}
+  </select>
+  <select id="queryAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop_pic
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from shop_pic
+    where pic_id = #{picId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entertainment.model.ShopPic" >
+    insert into shop_pic (pic_id, pic_add, shop_id, 
+      examine)
+    values (#{picId,jdbcType=INTEGER}, #{picAdd,jdbcType=VARCHAR}, #{shopId,jdbcType=INTEGER}, 
+      #{examine,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entertainment.model.ShopPic" >
+    insert into shop_pic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="picId != null" >
+        pic_id,
+      </if>
+      <if test="picAdd != null" >
+        pic_add,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="examine != null" >
+        examine,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="picId != null" >
+        #{picId,jdbcType=INTEGER},
+      </if>
+      <if test="picAdd != null" >
+        #{picAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="examine != null" >
+        #{examine,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entertainment.model.ShopPic" >
+    update shop_pic
+    <set >
+      <if test="picAdd != null" >
+        pic_add = #{picAdd,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="examine != null" >
+        examine = #{examine,jdbcType=BIT},
+      </if>
+    </set>
+    where pic_id = #{picId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entertainment.model.ShopPic" >
+    update shop_pic
+    set pic_add = #{picAdd,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      examine = #{examine,jdbcType=BIT}
+    where pic_id = #{picId,jdbcType=INTEGER}
+  </update>
+</mapper>

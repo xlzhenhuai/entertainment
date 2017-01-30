@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.entertainment.dao.PlatetypeMapper" >
+  <resultMap id="BaseResultMap" type="com.entertainment.model.Platetype" >
+    <id column="plateType_id" property="platetypeId" jdbcType="INTEGER" />
+    <result column="plateType_name" property="platetypeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    plateType_id, plateType_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from platetype
+    where plateType_id = #{platetypeId,jdbcType=INTEGER}
+  </select>
+   <select id="queryAll" resultMap="BaseResultMap" parameterType="com.entertainment.model.Platetype" >
+    select 
+    <include refid="Base_Column_List" />
+    from platetype
+    <where>
+      <if test="platetypeName != null" >
+        plateType_name = #{platetypeName,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from platetype
+    where plateType_id = #{platetypeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entertainment.model.Platetype" >
+    insert into platetype (plateType_id, plateType_name)
+    values (#{platetypeId,jdbcType=INTEGER}, #{platetypeName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entertainment.model.Platetype" >
+    insert into platetype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="platetypeId != null" >
+        plateType_id,
+      </if>
+      <if test="platetypeName != null" >
+        plateType_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="platetypeId != null" >
+        #{platetypeId,jdbcType=INTEGER},
+      </if>
+      <if test="platetypeName != null" >
+        #{platetypeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entertainment.model.Platetype" >
+    update platetype
+    <set >
+      <if test="platetypeName != null" >
+        plateType_name = #{platetypeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where plateType_id = #{platetypeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entertainment.model.Platetype" >
+    update platetype
+    set plateType_name = #{platetypeName,jdbcType=VARCHAR}
+    where plateType_id = #{platetypeId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,148 @@
+package com.entertainment.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.entertainment.model.Administratorst;
+import com.entertainment.model.Shop;
+import com.entertainment.model.ShopDetails;
+import com.entertainment.model.ShopPic;
+import com.entertainment.model.Staff;
+import com.entertainment.model.StaffDetails;
+import com.entertainment.model.StaffPic;
+import com.entertainment.service.IAdministratorstService;
+import com.entertainment.service.IShopDetailsService;
+import com.entertainment.service.IShopPicService;
+import com.entertainment.service.IShopService;
+import com.entertainment.service.IStaffDetailsService;
+import com.entertainment.service.IStaffPicService;
+import com.entertainment.service.IStaffService;
+
+@Controller
+@RequestMapping("client")
+public class ClientController {
+	@Autowired
+	IShopService iShopService;
+	@Autowired
+	IShopDetailsService iShopDetailsService;
+	@Autowired
+	IShopPicService iShopPicService;
+	@Autowired
+	IStaffService iStaffService;
+	@Autowired
+	IStaffDetailsService iStaffDetailsService;
+	@Autowired
+	IStaffPicService iStaffPicService;
+	@Autowired
+	IAdministratorstService iAdministratorstService;
+	
+		/**
+		 * 查询所有店铺
+		 * @return
+		 */
+		@RequestMapping(value = "/shopAll")
+		public List<Shop> shopAll(Shop shop){
+			return iShopService.queryAll(shop);
+			};
+		/**
+		 * 查询店铺详情
+		 * @return
+		 */
+		
+		@RequestMapping(value = "/shopDetails")
+		public ShopDetails shopDetails(Integer id ){
+			return iShopDetailsService.load(id);}
+		
+		/**
+		 * 查询所有员工
+		 * @return
+		 */
+		@RequestMapping(value = "/staffAll")
+		public List<Staff> staffAll(Staff staff){
+			return iStaffService.queryAll(staff);};
+		
+		/**
+		 * 查询员工详情
+		 * @return
+		 */
+		@RequestMapping(value = "/staffDetails")
+		public StaffDetails staffDetails(Integer id ){
+			return iStaffDetailsService.load(id);}	
+		
+		/**
+		 * 首页店铺展示
+		 * @return
+		 */
+		@RequestMapping(value = "/homePage")
+		public List<Shop> homePage(Shop shop){
+			return iShopService.queryAll(shop);};
+		/**
+		 * 注册管理员
+		 */
+		@RequestMapping(value = "/regisAdministratorst")
+		public void regisAdministratorst(Administratorst administratorst){
+			iAdministratorstService.save(administratorst);
+		}
+		
+		/**
+		 * 添加店铺数据	
+		 */
+		@RequestMapping(value = "/addShop")
+		public void addShop(Shop shop){
+			iShopService.save(shop);
+		}
+		
+		/**
+		 * 添加店铺详情数据	
+		 */
+		@RequestMapping(value = "/addShopDetails")
+		public void addShopDetails(ShopDetails shopDetails){
+			iShopDetailsService.save(shopDetails);
+		}
+		
+		/**
+		 * 添加店铺图片	
+		 */
+		@RequestMapping(value = "/addShopDetails")
+		public void addShopPic(ShopPic shopPic){
+			iShopPicService.save(shopPic);
+		}
+		
+		/**
+		 * 添加员工数据
+		 */
+		@RequestMapping(value = "/addStaff")
+		public void addStaff(Staff staff){
+			iStaffService.save(staff);  
+		}
+		
+		/**
+		 * 添加员工详情数据
+		 */
+		@RequestMapping(value = "/addStaffDetails")
+		public void addStaffDetails(StaffDetails staffDetails){
+			iStaffDetailsService.save(staffDetails);
+		}
+		
+		/**
+		 * 添加员工图片
+		 */
+		@RequestMapping(value = "/addStaff")
+		public void addStaffPic(StaffPic staffPic){
+			iStaffPicService.save(staffPic);  
+		}
+
+
+
+		
+		
+
+		
+		
+	
+	
+
+}
